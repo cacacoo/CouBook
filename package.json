@@ -26,6 +26,7 @@
     "gulp-watch": "^4.2.4"
   },
   "dependencies": {
+    "express": "^4.12.3",
     "mongoose": "^4.0.1"
   }
 }
