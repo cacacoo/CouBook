@@ -24,12 +24,12 @@ db.once('open', function (callback) {
         modifiedAt: new Date
     });
 
-    meanStack.save(function (err, silence) {
+    meanStack.save(function (err, meanStack) {
         if (err) return console.error(err);
 
-        CouBook.find(function (err, kittens) {
+        CouBook.find(function (err, aCouBook) {
             if (err) return console.error(err);
-            console.log(kittens)
+            console.log(aCouBook)
         });
 
     });
