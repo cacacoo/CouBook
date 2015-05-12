@@ -1,8 +1,10 @@
 // @file HelloWorld.js
-function HelloWorld() {
-    'use strict';
+define(function(){
+    function HelloWorld() {
+        'use strict';
 
-    this.message = 'What the????';
-}
+        this.message = 'What is Weddddbpack?';
+    }
 
-module.exports = HelloWorld;
+    return HelloWorld;
+});

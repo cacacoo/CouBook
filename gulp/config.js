@@ -37,7 +37,9 @@ module.exports = {
         entry: path.resolve(src + '/js/app.js'),
         output: {
             path: path.resolve(src + '/js/app.js'),
-            filename: 'bundle.js'
+            filename: 'bundle.js',
+            library: 'amd',
+            publicPath : 'js/'
         },
         resolve: {
             extensions: [ '', '.js' ]

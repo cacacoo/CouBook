@@ -2,8 +2,13 @@
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 var config = require('../config').watch;
+var livereload = require('gulp-livereload');
+
+livereload({ start: true });
 
 gulp.task('watch', function () {
+
+    livereload.listen();
 
     // js
     watch(config.js, function () {

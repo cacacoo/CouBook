@@ -1,11 +1,9 @@
-(function() {
+require(['./components/HelloWorld'], function(Hello) {
 
     'use strict';
 
-    var Hello = require('./components/HelloWorld');
-
     var hello = new Hello();
 
-    document.write(hello.message);
+    console.log(hello.message);
 
-})();
+});
