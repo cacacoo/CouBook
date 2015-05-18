@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     config = require('../config');
 
 gulp.task('webpack', function () {
+
     gulp.src(config.webpack.entry)
         .pipe(gulpif(config.js.jshint.enable, jshint(config.js.jshint.config)))
         .pipe(gulpif(config.js.jshint.enable, jshint.reporter('jshint-stylish')))
