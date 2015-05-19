@@ -19,6 +19,12 @@ module.exports = {
         }
     },
 
+    express: {
+        path: dest,
+        port: 1980,
+        livereloadPort: 35729
+    },
+
     copy: {
         src: [
             src + '/www/index.html'

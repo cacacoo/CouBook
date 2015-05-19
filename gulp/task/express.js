@@ -1,17 +1,14 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    config = require('../config');
 
-// Let's make things more readable by
-// encapsulating each part's setup
-// in its own method
-function startExpress() {
-
+function serverListen() {
     var express = require('express');
     var app = express();
-    app.use(express.static(__dirname + '/dist'));
-    app.listen(4000);
+    app.use(require('connect-livereload')({port: config.express.livereloadPort}));
+    app.use(express.static(config.express.path));
+    app.listen(config.express.port);
 }
 
 gulp.task('express', function () {
-
-    startExpress();
+    serverListen();
 });

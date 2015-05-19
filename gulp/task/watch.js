@@ -1,28 +1,37 @@
 // @file watch.js
 var gulp = require('gulp');
 var watch = require('gulp-watch');
-var config = require('../config').watch;
-var livereload = require('gulp-livereload');
+var config = require('../config');
+var ld = require('./livereload');
 
-livereload({ start: true });
+function notifyLiveReload(event) {
+    var fileName = require('path').relative(config.express.path, event.path);
+
+    ld.tinylr.changed({
+        body: {
+            files: [fileName]
+        }
+    });
+}
 
 gulp.task('watch', function () {
 
-    livereload.listen();
-
     // js
-    watch(config.js, function () {
+    watch(config.watch.js, function (e) {
         gulp.start(['webpack']);
+        notifyLiveReload(e);
     });
 
     // styl
-    watch(config.styl, function () {
+    watch(config.watch.styl, function (e) {
         gulp.start(['stylus']);
+        notifyLiveReload(e);
     });
 
     // www
-    watch(config.www, function () {
+    watch(config.watch.www, function (e) {
         gulp.start(['copy']);
+        notifyLiveReload(e);
     });
 
 });

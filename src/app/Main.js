@@ -14,4 +14,5 @@ var $ = require('jquery'),
 
 var hello = new Hello();
 
+console.log('hello???');
 console.log(new Date(), $(window), hello.message);

@@ -1,6 +1,9 @@
 var gulp = require('gulp'),
-    tinylr = require('tinylr');
+    config = require('../config');
 
+var tinylr = require('tiny-lr')();
 gulp.task('livereload', function() {
-    tinylr.listen(4002);
+    tinylr.listen(config.express.livereloadPort);
 });
+
+exports.tinylr = tinylr;
