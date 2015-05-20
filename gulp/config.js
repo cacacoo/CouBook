@@ -12,6 +12,11 @@ module.exports = {
         src: src + '/app/**',
         dest: dest + '/app',
         uglify: false,
+        bower: {
+            "directory": "src/js/components/",
+            "analytics": false,
+            "timeout": 120000
+        },
         jshint: {
             enable: true,
             config: '.jshintrc',

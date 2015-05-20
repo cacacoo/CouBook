@@ -11,8 +11,5 @@
 var $ = require('jquery'),
     Hello = require('./components/HelloWorld.js');
 
-
 var hello = new Hello();
-
-console.log('hello???');
 console.log(new Date(), $(window), hello.message);
