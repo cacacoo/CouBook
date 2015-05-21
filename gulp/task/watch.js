@@ -1,8 +1,8 @@
 // @file watch.js
-var gulp = require('gulp');
-var watch = require('gulp-watch');
-var config = require('../config');
-var ld = require('./livereload');
+var gulp = require('gulp'),
+    watch = require('gulp-watch'),
+    config = require('../config'),
+    ld = require('./livereload');
 
 function notifyLiveReload(event) {
     var fileName = require('path').relative(config.express.path, event.path);

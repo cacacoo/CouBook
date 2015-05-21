@@ -6,6 +6,7 @@ var path = require('path'),
 
 module.exports = {
 
+    profile: 'test',
     dest: dest,
 
     js: {
@@ -54,7 +55,6 @@ module.exports = {
         output: {
             path: path.resolve(src + '/app/Main.js'),
             filename: 'bundle.js',
-//            library: 'amd',
             publicPath : 'app/'
         },
         resolve: {

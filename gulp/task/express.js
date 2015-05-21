@@ -1,12 +1,10 @@
 var gulp = require('gulp'),
+    gutil = require('gulp-util');
     config = require('../config');
 
 function serverListen() {
-    var express = require('express');
-    var app = express();
-    app.use(require('connect-livereload')({port: config.express.livereloadPort}));
-    app.use(express.static(config.express.path));
-    app.listen(config.express.port);
+    require("../../src/server/server");
+    gutil.log("start express server");
 }
 
 gulp.task('express', function () {

@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     webpack = require('gulp-webpack'),
-    gulpIgnore = require('gulp-ignore'),
     config = require('../config');
 
 gulp.task('webpack', function () {
