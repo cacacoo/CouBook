@@ -7,7 +7,6 @@ exports.findAll = function() {
 
         CouBook.find(function (err, bookList) {
             if (err) {
-                console.error(err);
                 reject(new Error(err));
             } else {
                 resolve(bookList);
