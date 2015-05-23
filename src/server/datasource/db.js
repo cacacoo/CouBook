@@ -1,4 +1,4 @@
-var config = require( './config' ),
+var config = require( './../config' ),
     winston = require( 'winston' ),
     mongoose = require( 'mongoose' );
 
@@ -13,7 +13,6 @@ exports.open = function() {
 
         winston.log("info", "mongoose connected!");
         winston.log("info", db.host, db.port, db.name);
-        winston.log("info", "collections", db.collections);
 
     });
 
