@@ -1,6 +1,4 @@
-var mongoose = require('mongoose'),
-    db = require('../db'),
-    CouBook = require('./Book'),
+var CouBook = require('./Book'),
     Q = require("q");
 
 exports.findAll = function() {
