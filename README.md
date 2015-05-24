@@ -3,7 +3,8 @@ CouBook
 # Install
 
 1. nodejs install
-2. execute console command
+2. mongodb install
+3. execute console command
 ```sh
 $ git clone {repository_path} {dirName}
 $ cd {dirName}
