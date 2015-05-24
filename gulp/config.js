@@ -5,7 +5,8 @@ var path = require('path'),
     gulpConfigHost = 'localhost',
     gulpConfigPort = 1980,
     gulpLivereloadPort = 35729,
-    relativeSrcPath = path.relative('.', src);
+    relativeSrcPath = path.relative('.', src),
+    current = process.cwd();
 
 module.exports = {
 
@@ -16,11 +17,6 @@ module.exports = {
         src: src + '/app/**',
         dest: dest + '/app',
         uglify: false,
-//        bower: {
-//            "directory": "src/js/components/",
-//            "analytics": false,
-//            "timeout": 120000
-//        },
         jshint: {
             enable: true,
             config: '.jshintrc',
@@ -29,8 +25,7 @@ module.exports = {
     },
 
     open: {
-//        url: "http://" + gulpConfigHost + ":" + gulpConfigPort,
-        url: "http://localhost:1980",
+        url: "http://" + gulpConfigHost + ":" + gulpConfigPort,
 //        app: "chrome" // window
 //        app: "google-chrome" // Linux
         app: "google chrome"
@@ -47,6 +42,17 @@ module.exports = {
             src + '/www/index.html'
         ],
         dest: dest
+    },
+
+    sass: {
+        src: [
+            src + '/app/sass/**/*.css',
+            src + '/app/sass/**/*.sass'
+        ],
+        dest: dest + '/css/',
+        output: 'app.css',
+        style: 'compressed', 
+        errLogToConsole: true
     },
 
     stylus: {
@@ -69,7 +75,11 @@ module.exports = {
             publicPath : 'app/'
         },
         resolve: {
-            extensions: [ '', '.js' ]
+            extenstions: [ '', '.js' ],
+            root: [
+                path.resolve('node_modules'),
+                path.join(src + "/app/components")
+            ]
         }
     },
 

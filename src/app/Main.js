@@ -1,6 +1,6 @@
 var $ = require('jquery'),
     react = require('react'),
-    Hello = require('./components/HelloWorld.js');
+    Hello = require('HelloWorld');
 
 var hello = new Hello();
 console.log(new Date(), $(window), hello.message, react);

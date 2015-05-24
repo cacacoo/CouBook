@@ -1,4 +1,4 @@
-// @file stylus.js
+// @Deprecate
 var gulp = require('gulp'),
     gulpif = require('gulp-if'),
     plumber = require('gulp-plumber'),
