@@ -51,7 +51,7 @@ module.exports = {
         ],
         dest: dest + '/css/',
         output: 'app.css',
-        style: 'compressed', 
+        style: 'compressed',
         errLogToConsole: true
     },
 
@@ -79,6 +79,17 @@ module.exports = {
             root: [
                 path.resolve('node_modules'),
                 path.join(src + "/app/components")
+            ],
+            alias: {
+                'materialize': path.resolve('node_modules/materialize-css/bin/materialize.js'),
+                'materialize-css': path.resolve('node_modules/materialize-css/bin/materialize.css')
+            }
+        },
+        module: {
+            loaders: [
+                { test: /\.css$/, loader: "style!css" },
+                { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+                { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
             ]
         }
     },

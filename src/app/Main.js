@@ -1,3 +1,4 @@
+require('materialize-css');
 var $ = require('jquery'),
     react = require('react'),
     Hello = require('HelloWorld');
