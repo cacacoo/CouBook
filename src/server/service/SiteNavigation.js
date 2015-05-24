@@ -9,7 +9,7 @@ router.get("/title", function(req, res, next) {
         res.send('');
     }
     else {
-        site.title('http://en.wikipedia.org/wiki/Spooky_the_Tuff_Little_Ghost')
+        site.title(req.query.url)
             .then(function (result) {
                 res.send(result);
             })
