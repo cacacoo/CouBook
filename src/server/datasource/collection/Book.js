@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    winston = require('winston');
+var mongoose = require( "mongoose" ),
+    logger = require( "../../logger" );
 
 var BookSchema = mongoose.Schema({
     title: String,
@@ -9,8 +9,8 @@ var BookSchema = mongoose.Schema({
     modifiedAt: Date
 });
 
-var CouBook = mongoose.model( 'CouBook', BookSchema );
+var CouBook = mongoose.model( "CouBook", BookSchema );
 
-winston.log( 'info', 'BookSchema Loaded.' );
+logger.log( "BookSchema Loaded." );
 
 module.exports = CouBook;

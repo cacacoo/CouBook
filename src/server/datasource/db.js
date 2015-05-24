@@ -1,6 +1,6 @@
-var config = require( './../config' ),
-    winston = require( 'winston' ),
-    mongoose = require( 'mongoose' );
+var config = require( "./../config" ),
+    logger = require( "./../logger" ),
+    mongoose = require( "mongoose" );
 
 exports.open = function() {
 
@@ -8,11 +8,11 @@ exports.open = function() {
 
     var db = mongoose.connection;
 
-    db.on('error', winston.log.bind(winston, 'error', 'mongoose connection error!'));
-    db.once('open', function (callback) {
+    db.on("error", logger.error.bind(logger, "mongoose connection error!"));
+    db.once("open", function (callback) {
 
-        winston.log("info", "mongoose connected!");
-        winston.log("info", db.host, db.port, db.name);
+        logger.log("mongoose connected!");
+        logger.log(db.host, db.port, db.name);
 
     });
 

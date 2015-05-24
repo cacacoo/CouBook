@@ -1,33 +1,24 @@
-var path = require('path'),
-    express = require('express'),
-    winston = require('winston'),
-    config = require('./config'),
+var path = require("path"),
+    express = require("express"),
+    logger = require("./logger"),
+    config = require("./config"),
     db = require("./datasource/db"),
-    book = require("./datasource/collection/BookRepository"),
     app = express();
 
-app.use(require('connect-livereload')({port: config.livereloadPort}));
-app.use(express.static(config.path));
-app.listen(config.port);
+function serverStart() {
 
-winston.profile(config.profile);
-winston.log( 'info', '[express] Server started.' );
+    app.use(require("connect-livereload")({port: config.livereloadPort}));
+    app.use(express.static(config.path));
+    app.listen(config.port);
 
-db.open();
+    logger.log( "[express] Server started." );
 
-app.get("/api/heartbeat", function(req, res) {
-    winston.log( 'info', 'request accepted.', req.url );
-    res.send(new Date());
-});
+    db.open();
 
-app.get("/api/book/all", function(req, res) {
-    console.log("find book");
-    book.findAll()
-        .then(function(bookList) {
-            res.send(bookList);
-        })
-        .catch(function(err) {
-            winston.log('error', err);
-            res.send(err);
-        });
-});
+    app.use("/heartbeat", require("./service/HeartBeatRouter"));
+    app.use("/book", require("./service/BookRouter"));
+}
+
+exports.start = serverStart;
+
+serverStart();
