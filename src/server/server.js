@@ -17,6 +17,7 @@ function serverStart() {
 
     app.use("/heartbeat", require("./service/HeartBeatRouter"));
     app.use("/book", require("./service/BookRouter"));
+    app.use("/site/nav", require("./service/SiteNavigation"));
 }
 
 exports.start = serverStart;
