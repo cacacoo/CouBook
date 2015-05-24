@@ -8,7 +8,11 @@ winston.profile(config.profile);
 var logger = new (winston.Logger)({
     transports: [
         new (winston.transports.Console)(),
-        new (winston.transports.File)({ filename: config.logger.basePath })
+//        new (winston.transports.File)({ filename: config.logger.basePath })
+        new (winston.transports.DailyRotateFile)({
+            filename: config.logger.basePath,
+            datePattern: config.logger.pattern
+        })
     ]
 });
 

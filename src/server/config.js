@@ -7,7 +7,8 @@ module.exports = {
     path: dist,
     port: 1980,
     logger: {
-        basePath: path.resolve("./log/express.out")
+        basePath: path.resolve("./logs/express.out"),
+        pattern: ".yyyy-MM-dd"
     },
     db: {
         name: "CouBook",

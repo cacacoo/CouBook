@@ -2,6 +2,9 @@
 var path = require('path'),
     dest = path.resolve('./dist'),
     src = path.resolve('./src'),
+    gulpConfigHost = 'localhost',
+    gulpConfigPort = 1980,
+    gulpLivereloadPort = 35729,
     relativeSrcPath = path.relative('.', src);
 
 module.exports = {
@@ -13,11 +16,11 @@ module.exports = {
         src: src + '/app/**',
         dest: dest + '/app',
         uglify: false,
-        bower: {
-            "directory": "src/js/components/",
-            "analytics": false,
-            "timeout": 120000
-        },
+//        bower: {
+//            "directory": "src/js/components/",
+//            "analytics": false,
+//            "timeout": 120000
+//        },
         jshint: {
             enable: true,
             config: '.jshintrc',
@@ -25,10 +28,18 @@ module.exports = {
         }
     },
 
+    open: {
+//        url: "http://" + gulpConfigHost + ":" + gulpConfigPort,
+        url: "http://localhost:1980",
+//        app: "chrome" // window
+//        app: "google-chrome" // Linux
+        app: "google chrome"
+    },
+
     express: {
         path: dest,
-        port: 1980,
-        livereloadPort: 35729
+        port: gulpConfigPort,
+        livereloadPort: gulpLivereloadPort
     },
 
     copy: {
