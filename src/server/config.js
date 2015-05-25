@@ -6,6 +6,9 @@ module.exports = {
     livereloadPort: 35729,
     path: dist,
     port: 1980,
+    capture: {
+        basePathDir: path.resolve("./capture")
+    },
     logger: {
         basePath: path.resolve("./logs/express.out"),
         pattern: ".yyyy-MM-dd"

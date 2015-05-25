@@ -1,6 +1,6 @@
 var express = require("express"),
     logger = require("../logger"),
-    book = require("../datasource/collection/BookRepository"),
+    bookRepository = require("../datasource/collection/BookRepository"),
     router = express.Router();
 
 router.use(function timeLog(req, res, next) {
@@ -9,13 +9,11 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.get("/api/item/:urn", function(req, res) {
-    logger.log("find urn > " + req.params.urn);
     res.send("Hello~");
 });
 
 router.get("/api/all", function(req, res) {
-    logger.log("find all book");
-    book.findAll()
+    bookRepository.findAll()
         .then(function(bookList) {
             res.send(bookList);
         })

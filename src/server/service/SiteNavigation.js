@@ -1,6 +1,7 @@
 var express = require("express"),
     fs = require("fs"),
     logger = require("./../logger"),
+    ImageRepository = require("../datasource/collection/SiteImageRepository"),
     site = require("./modules/Site"),
     router = express.Router();
 
@@ -20,34 +21,48 @@ router.get("/title", function(req, res, next) {
     }
 });
 
+router.get("/capture/list", function(req, res, next) {
+    ImageRepository.findAll()
+        .then(function(image) {
+            res.send(image);
+        })
+        .catch(function(err) {
+            winston.log("error", err);
+            res.send(err);
+        });
+});
+
 router.post("/capture", function(req, res, next) {
 
-    console.log(req.body);
+    var body = req.body,
+        url = body.url,
+        selector = body.selector || "body";
 
-    if(!req.body.url || !req.body.selector) {
-        res.send("<img src=''>");
+    if(!url || !selector) {
+        res.send({
+            encode: ""
+        });
+        return next();
     }
-    else {
-        site.capture(req.body.url, './image.png', req.body.selector)
-            .then(function (attachment) {
-                console.log(">>>>>", attachment);
-                fs.readFile(attachment, {encoding: 'base64'}, function(err, base64data) {
-                    if( err ) {
-                        res.send({
-                            "success": false,
-                            "encode": ""
-                        })
-                    }
-                    res.send({
-                        "success": true,
-                        "encode": base64data
-                    });
+
+    ImageRepository.find(url, selector).then(function(imageData) {
+
+        if(imageData) {
+            res.send(imageData);
+        }
+        else {
+            site.capture(url)
+                .then(function (attachment) {
+                    res.send(attachment)
+                })
+                .catch(function (err) {
+                    res.send(err);
                 });
-            })
-            .catch(function (err) {
-                res.send(err);
-            });
-    }
+        }
+
+    });
+
+
 });
 
 

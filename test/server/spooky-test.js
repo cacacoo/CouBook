@@ -4,6 +4,8 @@ try {
     var Spooky = require('../lib/spooky');
 }
 
+var abc = "ABCD";
+
 var spooky = new Spooky({
     child: {
         transport: 'http'
@@ -22,6 +24,9 @@ var spooky = new Spooky({
     spooky.start(
         'http://en.wikipedia.org/wiki/Spooky_the_Tuff_Little_Ghost');
     spooky.then(function () {
+
+        this.log("!1111111jkgjkfjyvcdc45exrhjgbhc54yygrdctreg swxj 11", this.args);
+
         this.emit('hello', 'Hello, from ' + this.evaluate(function () {
             return document.title;
         }));

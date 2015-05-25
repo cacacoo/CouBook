@@ -1,106 +1,33 @@
 var logger = require("../../logger"),
     Q = require("q"),
-    Spooky = require("spooky");
+    path = require('path'),
+    fs = require('fs'),
+    config = require('../../config');
 
-var defaultOption = {
-    child: {
-        transport: 'http'
-    },
-    casper: {
-        logLevel: 'debug',
-        verbose: true
-    }
+var captureDir = config.capture.basePathDir;
+if(!fs.existsSync(captureDir)) {
+    fs.mkdirSync(captureDir, 0766, function(err){
+        if(err) {
+            console.error("create capture directory failed...", err);
+            throw new Error(err);
+        }
+        logger.log("info", "capture directory created.", captureDir);
+    });
+}
+
+exports.title = function title( url ) {
+
+    return Q.promise( function( resolve, reject, notify ) {
+
+        reject(new Error("not implements"));
+
+    } );
 };
-
-function action(action, error, option) {
-
-    var spooky = new Spooky(option || defaultOption, function (err) {
-
-        if (err) {
-            error({
-                error: err,
-                stack: err.stack
-            });
-        }
-        else {
-            action(spooky);
-            spooky.run();
-        }
-
-    } );
-
-    spooky.on('error', function (e, stack) {
-
-        logger.error(e);
-
-        error({
-            error: e,
-            stack: stack
-        });
-
-    });
-
-    spooky.on('console', function (line) {
-        logger.log("[Spooky] " + line);
-    });
-
-}
-
-function title( url ) {
+exports.capture = function title( url ) {
 
     return Q.promise( function( resolve, reject, notify ) {
 
-        action(
-            function getTitle(spooky) {
-
-                spooky.start( url );
-                spooky.then(function () {
-                    this.emit('complete', this.evaluate(function () {
-                        return document.title;
-                    }));
-                });
-
-                spooky.on('complete', function (result) {
-                    resolve(result);
-                });
-
-            },
-            function errorHandle(err) {
-                reject(err);
-            }
-        );
+        reject(new Error("not implements"));
 
     } );
-}
-
-function capture( url, fileName, selector ) {
-
-    return Q.promise( function( resolve, reject, notify ) {
-
-        action(
-            function getTitle(spooky) {
-
-                spooky.start( url );
-                spooky.then(function() {
-
-                    this.captureSelector("./hello.png", "#header");
-                    this.emit('complete', this.evaluate(function () {
-                        return "./hello.png";
-                    }));
-                });
-
-                spooky.on('complete', function (result) {
-                    resolve(result);
-                });
-
-            },
-            function errorHandle(err) {
-                reject(err);
-            }
-        );
-
-    } );
-}
-
-exports.title = title;
-exports.capture = capture;
+};;
