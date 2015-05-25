@@ -1,7 +1,14 @@
 require('materialize-css');
 var $ = require('jquery'),
     react = require('react'),
-    Hello = require('HelloWorld');
+    AmdModule = require('amd-module'),
+    CommonJSModule = require('commonjs-module');
 
-var hello = new Hello();
-console.log(new Date(), $(window), hello.message, react);
+var amd = new AmdModule();
+var commonjs = new CommonJSModule();
+
+console.log('today', new Date());
+console.log('jquery enabled?', !!$);
+console.log('react enabled?', !!react);
+console.log(amd.message);
+console.log(commonjs.message);
