@@ -4,6 +4,8 @@ var $ = require('jquery'),
     AmdModule = require('amd-module'),
     CommonJSModule = require('commonjs-module');
 
+require('materialize');
+
 var amd = new AmdModule();
 var commonjs = new CommonJSModule();
 
