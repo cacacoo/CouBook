@@ -76,7 +76,7 @@ module.exports = {
             publicPath : 'app/'
         },
         resolve: {
-            extenstions: [ '', '.js'  ],
+            extenstions: [ '', '.js', 'jsx' ],
             root: [
                 path.resolve('node_modules'),
                 path.join(src + "/app/components")
