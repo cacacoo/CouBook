@@ -56,10 +56,13 @@
     "express": "^4.12.3",
     "gulp-express": "^0.3.5",
     "jquery": "^2.1.4",
+    "jsx-loader": "^0.13.2",
+    "material-ui": "^0.8.0",
     "materialize-css": "^0.96.1",
     "mongoose": "^4.0.1",
     "q": "^1.4.1",
     "react": "^0.13.3",
+    "react-tap-event-plugin": "^0.1.7",
     "winston": "^1.0.0"
   }
 }

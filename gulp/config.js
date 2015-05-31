@@ -76,7 +76,7 @@ module.exports = {
             publicPath : 'app/'
         },
         resolve: {
-            extenstions: [ '', '.js' ],
+            extenstions: [ '', '.js'  ],
             root: [
                 path.resolve('node_modules'),
                 path.join(src + "/app/components")
@@ -88,10 +88,13 @@ module.exports = {
         },
         module: {
             loaders: [
+                { test: /\.js$/, loader: 'jsx-loader' },
+                { test: /\.jsx$/, loader: "jsx-loader" },
                 { test: /\.css$/, loader: "style!css" },
                 { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
                 { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
-            ]
+            ],
+            noParse: /\.min\.js/
         },
         plugins: [
             new webpack.ProvidePlugin({
